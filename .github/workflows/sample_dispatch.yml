@@ -7,17 +7,13 @@ on:
         description: user data to pass
         type: string
         required: false
-        default: ""
       phone-back-token:
         type: string
         required: false
-        default: ""
       phone-back-sha:
         type: string
         required: false
-        default: ""
   
-
 jobs:
   dispatched:
     name: Dispatched job
@@ -28,11 +24,26 @@ jobs:
           printf "%s" "${{ inputs.data }}"
 
       - name: Report status back to the caller
+        if: ${{ inputs.phone-back-token && inputs.phone-back-sha }}
         uses: guibranco/github-status-action-v2@v1.1.13
         with:
           authToken: ${{ inputs.phone-back-token }}
           context: ${{ github.job }}
           description: Started
-          state: 'failure' # success, error, failure or pending
+          state: pending
+          sha: ${{ inputs.phone-back-sha }}
+          target_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+      - name: process something
+        run: sleep 30
+
+      - name: Report finished status back to the caller
+        if: ${{ inputs.phone-back-token && inputs.phone-back-sha }}
+        uses: guibranco/github-status-action-v2@v1.1.13
+        with:
+          authToken: ${{ inputs.phone-back-token }}
+          context: ${{ github.job }}
+          description: Successful in Xmin
+          state: 'success' # success, error, failure or pending
           sha: ${{ inputs.phone-back-sha }}
           target_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
