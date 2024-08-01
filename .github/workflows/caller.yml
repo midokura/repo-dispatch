@@ -13,6 +13,8 @@ jobs:
   call:
     name: Dispatch other workflow
     runs-on: ubuntu-22.04
+    permissions:
+      statuses: write
     steps:
       - name: print dispatched data
         run: |
@@ -33,7 +35,7 @@ jobs:
           workflow: sample_dispatch.yml
           inputs: |
             {
-              "phone-back-token": "${{ secrets.WRITE_COMMIT_STATUS_TOKEN }}",
+              "phone-back-token": "${{ github.token }}",
               "phone-back-sha": "${{ github.sha }}",
               "data": "${{ inputs.data }}"
             }
