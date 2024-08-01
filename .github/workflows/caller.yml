@@ -1,0 +1,39 @@
+name: Caller example
+
+on:
+  workflow_dispatch:
+    inputs:
+      data:
+        description: user data to pass
+        type: string
+        required: false
+        default: ""
+
+jobs:
+  call:
+    name: Dispatch other workflow
+    runs-on: ubuntu-22.04
+    steps:
+      - name: print dispatched data
+        run: |
+          printf "%s" "${{ inputs.data }}"
+
+      - name: dispatch workflow
+        id: external_dispatch
+        uses: benc-uk/workflow-dispatch@v1.2.3
+        with:
+          # The token that will be used to authenticate on the other repo
+          # Since we are calling from the same repo, github.token will do
+          token: ${{ github.token }}
+          # The path to the called repo, in this case it is the same repo
+          repo: ${{ github.repository }}
+          # The ref on the called repo, in this case is the same 
+          ref: ${{ github.ref }}
+          # The name of the workflow to handle the dispatch
+          workflow: sample_dispatch.yml
+          inputs: |
+            {
+              "phone-back-token": "${{ secrets.WRITE_COMMIT_STATUS_TOKEN }}",
+              "phone-back-sha": "${{ github.sha }}",
+              "data": "${{ inputs.data }}"
+            }
