@@ -1,0 +1,38 @@
+name: Dispatch example
+
+on:
+  workflow_dispatch:
+    inputs:
+      data:
+        description: user data to pass
+        type: string
+        required: false
+        default: ""
+      phone-back-token:
+        type: string
+        required: false
+        default: ""
+      phone-back-sha:
+        type: string
+        required: false
+        default: ""
+  
+
+jobs:
+  dispatched:
+    name: Dispatched job
+    runs-on: ubuntu-22.04
+    steps:
+      - name: print dispatched data
+        run: |
+          printf "%s" "${{ inputs.data }}"
+
+      - name: Report status back to the caller
+        uses: guibranco/github-status-action-v2@v1.1.13
+        with:
+          authToken: ${{ inputs.phone-back-token }}
+          context: ${{ github.jobs[github.job].name }}
+          description: Started
+          state: 'failure' # success, error, failure or pending
+          sha: ${{ inputs.phone-back-sha }}
+          target_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
