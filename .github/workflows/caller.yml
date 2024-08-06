@@ -23,6 +23,7 @@ jobs:
           dispatch-ref: ${{ github.ref }}
           dispatch-workflow: sample_dispatch.yml
           status-context: My new context
+          status-token: ${{ secrets.WRITE_COMMIT_STATUS_TOKEN }}
           inputs: |
             {
               "my-input": "${{ inputs.data }}"
