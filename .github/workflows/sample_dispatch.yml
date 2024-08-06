@@ -25,28 +25,5 @@ jobs:
         with:
           phone-home-input: ${{ inputs.phone-home }}
 
-
-      # - name: Report status back to the caller
-      #   if: ${{ inputs.phone-back-token && inputs.phone-back-sha }}
-      #   uses: guibranco/github-status-action-v2@v1.1.13
-      #   with:
-      #     authToken: ${{ inputs.phone-back-token }}
-      #     context: ${{ github.job }}
-      #     description: Started
-      #     state: pending
-      #     sha: ${{ inputs.phone-back-sha }}
-      #     target_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-      # - name: process something
-      #   run: sleep 30
-
-      # - name: Report finished status back to the caller
-      #   if: ${{ inputs.phone-back-token && inputs.phone-back-sha }}
-      #   uses: guibranco/github-status-action-v2@v1.1.13
-      #   with:
-      #     authToken: ${{ inputs.phone-back-token }}
-      #     context: ${{ inputs.phone-back-context }}
-      #     description: Successful in Xmin
-      #     state: 'success' # success, error, failure or pending
-      #     sha: ${{ inputs.phone-back-sha }}
-      #     target_url: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+      - name: process something
+        run: sleep 30
