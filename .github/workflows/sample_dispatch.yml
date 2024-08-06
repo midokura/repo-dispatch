@@ -27,3 +27,20 @@ jobs:
 
       - name: process something
         run: sleep 30
+
+  another-dispatched:
+    name: Dispatched job
+    runs-on: ubuntu-22.04
+    steps:
+      - name: print dispatched data
+        run: |
+          printf "my-input: %s" "${{ inputs.my-input }}"
+          printf "phone-home: %s" "${{ inputs.phone-home }}"
+
+      - uses: casaroli/phone-home@dev
+        with:
+          phone-home-input: ${{ inputs.phone-home }}
+          context: Another job
+
+      - name: process something
+        run: sleep 30
