@@ -30,7 +30,7 @@ export default function (token: string, repository: string, sha: string, context
         state: state,
         description: description,
         context: context,
-        target_url: url
+        target_url: url || null
     }));
 
     status_req.on('error', (e) => {
