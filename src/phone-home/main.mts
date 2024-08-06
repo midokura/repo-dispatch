@@ -3,7 +3,7 @@ import reportStatus from '../common/reportStatus.mjs';
 
 const phone_home_input: string = getInput('phone-home-input');
 const target_url: string = getInput('target-url');
-const custom_context: string = getInput('target-url');
+const custom_context: string = getInput('context');
 
 const phone_home_list = phone_home_input.split(';');
 
