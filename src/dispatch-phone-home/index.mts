@@ -17,9 +17,11 @@ const dispatchInputs: { [key: string]: string } = {};
 
 const inputs_obj = JSON.parse(inputs);
 
+console.log('::group::Parse Inputs');
+
 if (inputs_obj[phone_home_input_name]) {
     console.error(`error: cannot have ${phone_home_input_name} in inputs: ${inputs}`);
-    throw "error, bad input"
+    throw 'error, bad input'
 }
 
 for (const [key, value] of Object.entries(inputs_obj)) {
@@ -36,6 +38,21 @@ dispatchInputs[phone_home_input_name] = `${status_token};${status_repository};${
 
 console.log('inputs:', dispatchInputs);
 
-dispatchWorkflow(dispatch_token, dispatch_repository, dispatch_ref, dispatch_workflow, dispatchInputs);
+console.log("::endgroup::");
 
-reportStatus(status_token, status_repository, status_sha, status_context, 'pending', 'Dispatched');
+console.log(`::group::Dispatch ${dispatch_workflow} on ${dispatch_repository}`);
+
+console.log('ref:', dispatch_ref);
+console.log('inputs:', dispatchInputs);
+
+await dispatchWorkflow(dispatch_token, dispatch_repository, dispatch_ref, dispatch_workflow, dispatchInputs);
+
+console.log("::endgroup::");
+
+console.log('::group::Report dispatched status to self');
+
+console.log('context:', status_context);
+
+await reportStatus(status_token, status_repository, status_sha, status_context, 'pending', 'Dispatched');
+
+console.log("::endgroup::");

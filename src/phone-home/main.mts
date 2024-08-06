@@ -16,4 +16,11 @@ const repository = phone_home_list[1];
 const sha = phone_home_list[2];
 const context = phone_home_list.slice(3).join(';');
 
-reportStatus(token, repository, sha, context, 'pending', 'Started', target_url);
+console.log(`::group::Report started status to ${repository}:${sha}`);
+
+console.log('context:', context);
+console.log('target_url:', target_url);
+
+await reportStatus(token, repository, sha, context, 'pending', 'Started', target_url);
+
+console.log("::endgroup::");

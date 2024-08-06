@@ -1,0 +1,7 @@
+{
+    "files.exclude": {
+        "**/*.mjs.map": true
+    },
+    "files.trimFinalNewlines": true,
+    "files.insertFinalNewline": true
+}
