@@ -21,6 +21,11 @@ jobs:
           printf "my-input: %s" "${{ inputs.my-input }}"
           printf "phone-home: %s" "${{ inputs.phone-home }}"
 
+      - uses: casaroli/phone-home@dev
+        with:
+          phone-home-input: ${{ inputs.phone-home }}
+
+
       # - name: Report status back to the caller
       #   if: ${{ inputs.phone-back-token && inputs.phone-back-sha }}
       #   uses: guibranco/github-status-action-v2@v1.1.13

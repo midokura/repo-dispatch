@@ -17,11 +17,6 @@ jobs:
       actions: write
       statuses: write
     steps:
-      - name: print dispatched data
-        run: |
-          printf "%s" "${{ inputs.data }}"
-
-
       - uses: casaroli/dispatch-phone-home@dev
         with:
           dispatch-repository: ${{ github.repository }}
@@ -32,32 +27,3 @@ jobs:
             {
               "my-input": "${{ inputs.data }}"
             }
-
-      # - name: dispatch workflow
-      #   id: external_dispatch
-      #   uses: benc-uk/workflow-dispatch@v1.2.3
-      #   with:
-      #     # The token that will be used to authenticate on the other repo
-      #     # Since we are calling from the same repo, github.token will do
-      #     token: ${{ github.token }}
-      #     # The path to the called repo, in this case it is the same repo
-      #     repo: ${{ github.repository }}
-      #     # The ref on the called repo, in this case is the same 
-      #     ref: ${{ github.ref }}
-      #     # The name of the workflow to handle the dispatch
-      #     workflow: sample_dispatch.yml
-      #     inputs: |
-      #       {
-      #         "phone-back-token": "${{ secrets.WRITE_COMMIT_STATUS_TOKEN }}",
-      #         "phone-back-sha": "${{ github.sha }}",
-      #         "phone-back-context": "My dispatched job",
-      #         "data": "${{ inputs.data }}"
-      #       }
-      # - name: Report dispatched status in the caller
-      #   uses: guibranco/github-status-action-v2@v1.1.13
-      #   with:
-      #     authToken: ${{ secrets.WRITE_COMMIT_STATUS_TOKEN }}
-      #     context: My dispatched job
-      #     description: Dispatched
-      #     state: pending
-      #     sha: ${{ github.sha }}
