@@ -7,7 +7,7 @@ on:
         description: user data to pass
         type: string
         required: false
-        default: '{"my_input": "hello"}'
+        default: '{"my-input": "hello"}'
 
 jobs:
   call:
