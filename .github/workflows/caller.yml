@@ -30,7 +30,7 @@ jobs:
           status-context: My new context
           inputs: |
             {
-              "my-input": ${{ inputs.data }}
+              "my-input": "${{ inputs.data }}"
             }
 
       # - name: dispatch workflow
