@@ -24,9 +24,9 @@ jobs:
 
       - uses: casaroli/dispatch-phone-home@dev
         with:
-          repository: ${{ github.repository }}
-          workflow: sample_dispatch.yml
-          ref: ${{ github.ref }}
+          dispatch-repository: ${{ github.repository }}
+          dispatch-ref: ${{ github.ref }}
+          dispatch-workflow: sample_dispatch.yml
           status-context: My new context
           inputs: ${{ inputs.data }}
 
