@@ -7,7 +7,7 @@ on:
         description: user data to pass
         type: string
         required: false
-        default: '{"my-input": "hello"}'
+        default: hello
 
 jobs:
   call:
@@ -28,7 +28,10 @@ jobs:
           dispatch-ref: ${{ github.ref }}
           dispatch-workflow: sample_dispatch.yml
           status-context: My new context
-          inputs: ${{ inputs.data }}
+          inputs: |
+            {
+              "my-input": ${{ inputs.data }}
+            }
 
       # - name: dispatch workflow
       #   id: external_dispatch
