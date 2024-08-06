@@ -1,0 +1,6 @@
+[submodule "dist/dispatch-phone-home"]
+	path = dist/dispatch-phone-home
+	url = git@github.com:casaroli/dispatch-phone-home.git
+[submodule "dist/phone-home"]
+	path = dist/phone-home
+	url = git@github.com:casaroli/phone-home.git
