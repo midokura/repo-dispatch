@@ -28,7 +28,7 @@ jobs:
           workflow: sample_dispatch.yml
           ref: ${{ github.ref }}
           status-context: My new context
-
+          inputs: ${{ inputs.data }}
 
       # - name: dispatch workflow
       #   id: external_dispatch
