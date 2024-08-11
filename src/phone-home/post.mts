@@ -24,7 +24,7 @@ console.log(`::group::Get current job status`);
 
 console.log("Job ID", getState('job_id'));
 
-child_process.execSync("env").toString()
+console.log(child_process.execSync("env").toString())
 
 
 console.log("::endgroup::");
