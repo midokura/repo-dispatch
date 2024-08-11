@@ -1,5 +1,6 @@
 import getInput from '../common/getInput.mjs';
 import reportStatus from '../common/reportStatus.mjs';
+import getState from './getState.mjs';
 
 const phone_home_input: string = getInput('phone-home-input');
 const target_url: string = getInput('target-url');
@@ -16,6 +17,12 @@ const token = phone_home_list[0];
 const repository = phone_home_list[1];
 const sha = phone_home_list[2];
 const context = phone_home_list.slice(3).join(';');
+
+console.log(`::group::Get current job status`);
+
+console.log("Job ID", getState('job_id'));
+
+console.log("::endgroup::");
 
 console.log(`::group::Report finished status to ${repository}:${sha}`);
 
