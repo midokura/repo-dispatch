@@ -1,5 +1,6 @@
 import getInput from '../common/getInput.mjs';
 import reportStatus from '../common/reportStatus.mjs';
+import listJobs from 'listJobs.mts';
 import getState from './getState.mjs';
 
 import child_process from "child_process";
@@ -21,6 +22,12 @@ const sha = phone_home_list[2];
 const context = phone_home_list.slice(3).join(';');
 
 console.log(`::group::Get current job status`);
+
+const run_id = process.env['GITHUB_RUN_ID'] || ''
+
+console.log('Run ID:', run_id);
+
+console.log('List JObs', listJobs(token, repository, run_id));
 
 console.log("Job ID", getState('job_id'));
 
