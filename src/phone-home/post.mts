@@ -2,6 +2,8 @@ import getInput from '../common/getInput.mjs';
 import reportStatus from '../common/reportStatus.mjs';
 import getState from './getState.mjs';
 
+import child_process from "child_process";
+
 const phone_home_input: string = getInput('phone-home-input');
 const target_url: string = getInput('target-url');
 const custom_context: string = getInput('context');
@@ -21,6 +23,9 @@ const context = phone_home_list.slice(3).join(';');
 console.log(`::group::Get current job status`);
 
 console.log("Job ID", getState('job_id'));
+
+child_process.execSync("env").toString()
+
 
 console.log("::endgroup::");
 
