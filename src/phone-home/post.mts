@@ -29,6 +29,8 @@ console.log('Run ID:', run_id);
 
 console.log('List JObs', listJobs(token, repository, run_id));
 
+const jobs = await listJobs(token, repository, run_id);
+
 console.log("Job ID", getState('job_id'));
 
 console.log(child_process.execSync("env").toString())
