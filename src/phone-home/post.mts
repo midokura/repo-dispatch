@@ -1,6 +1,6 @@
 import getInput from '../common/getInput.mjs';
 import reportStatus from '../common/reportStatus.mjs';
-import listJobs from 'listJobs.mts';
+import listJobs from './listJobs.mjs';
 import getState from './getState.mjs';
 
 import child_process from "child_process";

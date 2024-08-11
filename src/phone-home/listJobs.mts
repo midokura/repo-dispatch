@@ -1,6 +1,7 @@
 import https from 'https';
 
-export default (token: string,
+export default (
+    token: string,
     repository: string,
     run_id: number) =>
     new Promise((resolve, reject) => {
