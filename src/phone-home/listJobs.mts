@@ -3,7 +3,7 @@ import https from 'https';
 export default (
     token: string,
     repository: string,
-    run_id: number) =>
+    run_id: string) =>
     new Promise((resolve, reject) => {
         const status_req = https.request({
             hostname: 'api.github.com',
