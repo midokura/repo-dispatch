@@ -27,9 +27,10 @@ const run_id = process.env['GITHUB_RUN_ID'] || ''
 
 console.log('Run ID:', run_id);
 
-console.log('List JObs', listJobs(token, repository, run_id));
-
 const jobs = await listJobs(token, repository, run_id);
+
+console.log('List Jobs:', jobs);
+
 
 console.log("Job ID", getState('job_id'));
 
