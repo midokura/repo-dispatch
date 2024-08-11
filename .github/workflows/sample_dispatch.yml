@@ -26,7 +26,7 @@ jobs:
           phone-home-input: ${{ inputs.phone-home }}
 
       - name: process something
-        run: sleep 30
+        run: exit 1
 
   another-dispatched:
     name: Dispatched job
