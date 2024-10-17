@@ -8,6 +8,7 @@ import child_process from "child_process";
 const phone_home_input: string = getInput('phone-home-input');
 const target_url: string = getInput('target-url');
 const custom_context: string = getInput('context');
+const custom_status: string = getInput('status');
 
 const phone_home_list = phone_home_input.split(';');
 
@@ -44,6 +45,6 @@ console.log(`::group::Report finished status to ${repository}:${sha}`);
 console.log('context:', context);
 console.log('target_url:', target_url);
 
-await reportStatus(token, repository, sha, custom_context || context, 'success', 'Finished', target_url);
+await reportStatus(token, repository, sha, custom_context || context, custom_status, 'Finished', target_url);
 
 console.log("::endgroup::");
