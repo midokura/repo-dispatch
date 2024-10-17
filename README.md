@@ -11,10 +11,10 @@ to be used by the status checks.
 
 This is accomplished by using two actions together:
 
-- [casaroli/phone-home](https://github.com/casaroli/phone-home/)
-- [casaroli/dispatch-phone-home](https://github.com/casaroli/dispatch-phone-home)
+- [midokura/phone-home](https://github.com/midokura/phone-home/)
+- [midokura/dispatch-phone-home](https://github.com/midokura/dispatch-phone-home)
 
-The development and the source files are in [casaroli/repo-dispatch](https://github.com/casaroli/repo-dispatch/).
+The development and the source files are in [midokura/repo-dispatch](https://github.com/midokura/repo-dispatch/).
 If you have any problems, please open an issue there.
 
 ## Inputs
@@ -90,9 +90,9 @@ jobs:
     name: Dispatch another workflow
     runs-on: ubuntu-22.04
     steps:
-      - uses: casaroli/dispatch-phone-home@v1
+      - uses: midokura/dispatch-phone-home@v1
         with:
-          dispatch-repository: casaroli/my-other-repository
+          dispatch-repository: midokura/my-other-repository
           dispatch-ref: main
           dispatch-workflow: dispatched.yml
           status-context: My other checks
@@ -122,13 +122,13 @@ on:
       phone-home:
         type: string
         required: false
-    
+
 jobs:
   dispatched:
     name: Dispatched job
     runs-on: ubuntu-22.04
     steps:
-      - uses: casaroli/phone-home@v1
+      - uses: midokura/phone-home@v1
         with:
           phone-home-input: ${{ inputs.phone-home }}
 
